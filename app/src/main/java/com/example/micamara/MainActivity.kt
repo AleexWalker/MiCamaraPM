@@ -3,6 +3,7 @@ package com.example.micamara
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
             estadoFlash()
         }
 
+        botonGaleria.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media"))
+            startActivity(intent)
+        }
     }
 
     private fun createFotoapparat(){
@@ -119,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
     }
 
-    fun requestPermission(){
+    private fun requestPermission(){
         ActivityCompat.requestPermissions(this, permissions,0)
     }
 
